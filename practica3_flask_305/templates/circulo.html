@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área y perímetro del círculo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+</head>
+<body>
+    <header class="encabezado">
+        <h1>Calculadora del círculo</h1>
+        <nav class="menu">
+            <a href="/circulo">Círculo</a>
+        </nav>
+    </header>
+
+    <main class="contenedor">
+        <section class="tarjeta-operacion">
+            <h2>Área y perímetro del círculo</h2>
+
+            <form method="POST">
+                <label for="radio">Radio del círculo</label>
+                <input id="radio"
+                       name="radio"
+                       type="number"
+                       step="any"
+                       value="{{ radio }}"
+                       required
+                       placeholder="Ej: 5">
+
+                <button class="boton" type="submit">
+                    Calcular
+                </button>
+            </form>
+
+            {% if error %}
+                <p class="resultado" style="color: red;">
+                    {{ error }}
+                </p>
+            {% endif %}
+
+            {% if area is not none %}
+                <p class="resultado">
+                    Área: {{ "%.2f"|format(area) }}
+                </p>
+                <p class="resultado">
+                    Perímetro: {{ "%.2f"|format(perimetro) }}
+                </p>
+            {% endif %}
+
+        </section>
+    </main>
+</body>
+</html>
